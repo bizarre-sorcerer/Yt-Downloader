@@ -1,0 +1,9 @@
+Download the audio:
+  yt-dlp -x https://youtu.be/-z7hmAb2eqQ?si=TeeZyLqQwIAoaeI2
+
+Download the video(without audio):
+  yt-dlp https://youtu.be/-z7hmAb2eqQ?si=TeeZyLqQwIAoaeI2
+
+Get json data: 
+  yt-dlp --dump-json "https://youtu.be/-z7hmAb2eqQ?si=TeeZyLqQwIAoaeI2"
+
