@@ -3,18 +3,20 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 20px;
   background-color: #191919;
   color: white;
-  margin: 0;
+  margin: 0 0 50px 0;
 }
 
-header{
+.main-container{
   width: 80vw;
+  padding: 0 20px 0 20px;
 }
 
 .header-text{
   text-align: center;
-  font-size: 28px;
+  font-size: 26px;
 }
 
 .convert-container{
@@ -24,8 +26,6 @@ header{
   gap: 15px;
   background-color: #252525;
   padding: 20px;
-  width: 80vw;
-  margin: 10vh 0 5vh 0;
   border-radius: 4px;
 }
 
@@ -47,6 +47,7 @@ form{
   padding-left: 7px;
   border: 1px solid #0485ff;
   background: #191919;
+  color: white;
   outline: none;
 }
 
@@ -58,15 +59,48 @@ form{
   height: 40px;
   width: 100px;
   border-radius: 3px;
+  background: #0485ff;
+  color:white;
+}
+
+.info{
+  display: flex;
+  flex-direction: column;
+  width: 85vw;
+}
+
+.info h2{
+  font-size: 20px;
+  text-align: center;
+}
+
+p{
+  color: #9d9d9d;
+  font-size: 14px;
+  line-height: 24px;
+  margin: 0;
+}
+
+.thumbnail{
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.formats{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.format-button{
+  height: 40px;
+  border-radius: 3px;
   border:2px solid #0485ff;
   background: #0485ff;
   color:white;
 }
 
-.video-data{
-  width: 80vw;
-}
-
-.thumbnail{
-  width: 80%;
+.format-url{
+  text-decoration: none;
+  color: white;
 }
