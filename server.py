@@ -50,9 +50,6 @@ def removeDuplicateQualities(formats):
           filteredFormats.append(format_)
           encounteredResolutions.add(resolution)
 
-  print("removeDuplicateQualities() result:")
-  print(filteredFormats)
-
   return filteredFormats
 
 
@@ -70,9 +67,6 @@ def excludeFormats(formats):
     
     if not excludeFlag:
       filteredFormats.append(format_)
-
-  print("exludeFormats() result:")
-  print(filteredFormats)
 
   return filteredFormats
 
