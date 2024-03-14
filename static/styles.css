@@ -1,14 +1,24 @@
 * {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
+
 .heading {
-  font-family: Arial;
-  margin-top:40vh;
+  font-family: Arial, Helvetica, sans-serif;
 }
+
+.content{
+  width: 80vw;
+  margin: 15vh 0 15vh 0;
+}
+
 .URL-input, .convert-button {
-  font-size:1.3em;
-  padding:5px 10px;
+  font-size: 1.3em;
+  padding: 5px 10px;
 }
+
 .URL-input {
   border-radius:4px 0px 0px 4px;
   width:30em;
@@ -17,12 +27,23 @@
   background: #EEEEEE;
   outline:none;
 }
+
 .URL-input:focus {
   border:2px solid #0485ff;
 }
+
 .convert-button {
   border-radius:0px 4px 4px 0px;
   border:2px solid #0485ff;
   background: #0485ff;
   color:white;
+  margin-top: 15px;
+}
+
+.video-data{
+  width: 80vw;
+}
+
+.thumbnail{
+  width: 80%;
 }

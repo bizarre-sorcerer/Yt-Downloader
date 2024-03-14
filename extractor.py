@@ -32,4 +32,4 @@ def extractVideoData(url):
     "thumbnail": thumbnail
   }
 
-print(extractVideoData(videoUrl))
+# print(extractVideoData(videoUrl))
