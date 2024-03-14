@@ -1,6 +1,5 @@
 <!DOCTYPE html>
   <html lang="en">
-    
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,17 +15,21 @@
   </head>  
   
   <body>
-    <div class="content">
-      <h1 class="heading">YouTube Video and Audio Downloader !</h1>
-      
-      <form action="/download" method="post">
+    <header>
+      <h1 class="header-text">Установщик YouTube видео и аудио</h1>
+    </header>
+    
+    <div class="convert-container">
+      <h4>Вставьте корректную ссылку на ютуб видео</h4>
+
+      <form action="/download" method="post">  
         <input 
           class="URL-input"
           name="video_url"
           type="text"
           placeholder="Video URL e.g. https://www.youtube.com/watch?v=MtN1YnoL46Q">
         
-        <button class="convert-button" type="submit">Convert</button>
+        <button class="convert-button" type="submit">Найти</button>
       </form>
     </div>
 
