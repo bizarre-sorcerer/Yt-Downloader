@@ -1,15 +1,13 @@
 from flask import Flask, render_template, redirect, url_for, request
 from extractor import extractVideoData
 from filter_formats import filterFormats
-# from flask_sqlalchemy import SQLAlchemy
-# from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
+from reg import db, User, load_user
+from flask_login import login_user, login_required, logout_user, current_user
 
 app = Flask(__name__)
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
-# app.config['SECRET_KEY'] = 'secret-key'
-# db = SQLAlchemy(app)
-# login_manager = LoginManager()
-# login_manager.init_app(app)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
+app.config['SECRET_KEY'] = 'secret-key'
+db.init_app(app)
 
 @app.route('/')
 def main_page():
@@ -31,7 +29,6 @@ def download():
     formats=formats,
     thumbnail=thumbnail
   )
-
 
 if __name__ == '__main__':
   app.run(host='0.0.0.0', port='43345', debug=True)
