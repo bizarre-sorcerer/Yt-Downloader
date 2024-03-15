@@ -1,14 +1,9 @@
-from flask import Flask, render_template, redirect, url_for, request
+from flask import Flask, render_template, request
 from extractor import extractVideoData
 from filter_formats import filterFormats
-from reg import db, User, load_user
-from flask_login import login_user, login_required, logout_user, current_user
+from reg import add_user
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
-app.config['SECRET_KEY'] = 'secret-key'
-db.init_app(app)
-
 
 @app.route('/')
 def main_page():
@@ -32,37 +27,18 @@ def download():
   )
 
 
-@app.route('/login', methods=['GET', 'POST'])
+@app.route('/login', methods=['POST', 'GET'])
 def login():
-    if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
-        user = User.query.filter_by(username=username).first()
-        if user:
-            if user.password == password:
-                login_user(user)
-                return redirect(url_for('home'))
-
-    return render_template('login.html')
-
-
-@app.route('/signup', methods=['GET', 'POST'])
-def signup():
-    if request.method == 'POST':
-        new_user = User(username=request.form['username'], password=request.form['password'])
-        db.session.add(new_user)
-        db.session.commit()
-        return redirect(url_for('login'))
-
-    return render_template('signup.html')
-
-
-@app.route('/logout')
-@login_required
-def logout():
-    logout_user()
-    return redirect(url_for('index'))
+  if request.method == "GET":
+    return render_template("login.html")
   
+  elif request.method == "POST":
+    username = request.form["login"]
+    password = request.form['password']
+    add_user(username, password)
+
+  return render_template('login.html')
+
 
 if __name__ == '__main__':
   app.run(host='0.0.0.0', port='43345', debug=True)

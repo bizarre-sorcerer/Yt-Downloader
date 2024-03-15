@@ -1,5 +1,20 @@
-from flask import Flask, render_template, redirect, url_for, request
-from extractor import extractVideoData
-from flask_sqlalchemy import SQLAlchemy
-from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
+import mysql.connector
 
+def connect_to_db():
+  db = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    password="",
+    database="ytdownloader_data"
+  )
+  return db
+
+def add_user(username, password):
+  db = connect_to_db()
+  cursor = db.cursor()
+
+  add_data_query = "INSERT INTO users (username, password) VALUES (%s, %s)"
+  cursor.execute(add_data_query, (username, password))
+
+  db.commit()
+  db.close()
