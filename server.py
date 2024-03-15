@@ -64,7 +64,7 @@ def login():
 
     if check_user(cursor, username, password)[0]:
 
-      session['user_id'] = user_id
+      # session['user_id'] = user_id
       session['username'] = username  
       return redirect(url_for("main_page"))
     else: 
