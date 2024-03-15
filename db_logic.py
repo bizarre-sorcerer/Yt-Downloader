@@ -9,12 +9,15 @@ def connect_to_db():
   )
   return db
 
-def add_user(username, password):
+def add_user(username, email, password):
   db = connect_to_db()
   cursor = db.cursor()
 
-  add_data_query = "INSERT INTO users (username, password) VALUES (%s, %s)"
-  cursor.execute(add_data_query, (username, password))
+  add_data_query = "INSERT INTO user_data (username, email, password) VALUES (%s, %s, %s)"
+  cursor.execute(add_data_query, (username, email, password))
 
   db.commit()
   db.close()
+
+def check_user(login, password):
+  return True
