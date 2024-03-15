@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, session, redirect, url_for
+from flask import Flask, render_template, request, session, redirect, url_for, jsonify
 from extractor import extractVideoData
 from filter_formats import filterFormats
 from db_logic import add_user, check_user 
@@ -52,10 +52,18 @@ def login():
     username = request.form["login"]
     password = request.form['password']   
 
-    if check_user(username, password):
+    print(check_user(username, password))
+    if check_user(username, password)[0]:
       session['username'] = username  
-    
-    return redirect(url_for("main_page"))
+      return redirect(url_for("main_page"))
+    else: 
+      error = check_user(username, password)[1]
+      return render_template("sign-in.html")
+
+@app.route('/log-out')
+def logout():
+    session.pop('username', None)
+    return redirect(url_for('main_page'))
 
 
 if __name__ == '__main__':
