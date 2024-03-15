@@ -1,11 +1,20 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, redirect, url_for, request
 from extractor import extractVideoData
+from filter_formats import filterFormats
+# from flask_sqlalchemy import SQLAlchemy
+# from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 
 app = Flask(__name__)
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
+# app.config['SECRET_KEY'] = 'secret-key'
+# db = SQLAlchemy(app)
+# login_manager = LoginManager()
+# login_manager.init_app(app)
 
 @app.route('/')
 def main_page():
   return render_template('index.html')
+
 
 @app.route('/download', methods=["POST"])
 def download():
@@ -22,53 +31,6 @@ def download():
     formats=formats,
     thumbnail=thumbnail
   )
-
-
-def filterFormats(formats):
-  filteredFormats = excludeFormats(formats)
-  result = removeDuplicateQualities(filteredFormats)
-
-  return result
-
-def removeDuplicateQualities(formats):
-  encounteredResolutions = set()
-  filteredFormats = []
-
-  for format_ in formats:
-      # Extract the resolution from the formatName
-      format_parts = format_["formatName"].split(' ')
-      resolution = None
-
-      # Search for resolution enclosed in brackets
-      for part in format_parts:
-          if part.startswith('(') and part.endswith(')'):
-              resolution = part[1:-1]  # Remove brackets
-              break
-
-      # If resolution found and not encountered before, add format to filtered list
-      if resolution and resolution not in encounteredResolutions:
-          filteredFormats.append(format_)
-          encounteredResolutions.add(resolution)
-
-  return filteredFormats
-
-
-def excludeFormats(formats):
-  excludedFormats = ["storyboard", "ultralow"]
-  filteredFormats = []
-
-  for format_ in formats:
-    excludeFlag = False
-
-    for excludedFormat in excludedFormats:
-      if excludedFormat in format_["formatName"]:
-        excludeFlag = True 
-        break
-    
-    if not excludeFlag:
-      filteredFormats.append(format_)
-
-  return filteredFormats
 
 
 if __name__ == '__main__':
