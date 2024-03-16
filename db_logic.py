@@ -1,11 +1,13 @@
-import mysql.connector
 from flask import jsonify
 
-def add_user(cursor, username, email, password):
+def add_user(db, username, email, password):
+  cursor = db.cursor()
   add_data_query = "INSERT INTO user_data (username, email, password) VALUES (%s, %s, %s)"
   cursor.execute(add_data_query, (username, email, password))
+  db.commit()
 
-def check_user(cursor, login, password):
+def check_user(db, login, password):
+  cursor = db.cursor()
   cursor.execute("SELECT * FROM user_data WHERE username = %s", (login,))
   user_data = cursor.fetchone()
 
@@ -14,7 +16,6 @@ def check_user(cursor, login, password):
       False,
       "User not found"
     ]
-
   elif user_data[3] != password:
     return [
       False,
@@ -26,6 +27,14 @@ def check_user(cursor, login, password):
     "Successfully signed in"
   ]
 
-def save_history(cursor, url, user_id):
-  cursor.execute("UPDATE user_data SET history = %s WHERE id = %s", (url, user_id))
+def save_to_history(db, url, user_id):
+  cursor = db.cursor()
+  cursor.execute("UPDATE user_data SET history = CONCAT(history, ', ', %s) WHERE id = %s", (url, user_id))  
+  db.commit()
 
+def get_user_id(db, username):
+  cursor = db.cursor()
+  cursor.execute("SELECT id FROM user_data WHERE username = %s", (username, ))
+  user = cursor.fetchone()
+  return user[0] if user else None
+  

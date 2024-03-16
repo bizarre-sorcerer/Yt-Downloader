@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, session, redirect, url_for, jsonify
 from extractor import extractVideoData
 from filter_formats import filterFormats
-from db_logic import add_user, check_user 
+from db_logic import add_user, check_user, save_to_history, get_user_id
 import mysql.connector
 
 app = Flask(__name__)
@@ -14,10 +14,9 @@ db = mysql.connector.connect(
     database="ytdownloader_data"
   )
 
-cursor = db.cursor()
-
 @app.route('/')
 def main_page():
+  print(session)
   if 'username' in session:
     return render_template('index-logged-in.html', username=session['username'])
   else:
@@ -31,6 +30,10 @@ def download():
   title = videoData["title"]
   formats = filterFormats(videoData["formats"])
   thumbnail = videoData["thumbnail"]
+
+  user_id = session["user_id"]
+  print(videoUrl, user_id)
+  save_to_history(db, videoUrl, user_id)
 
   return render_template(
     'download.html',
@@ -48,9 +51,11 @@ def registration():
     username = request.form["username"]
     email = request.form["email"]
     password = request.form['password']
-    add_user(cursor, username, email, password)
+    add_user(db, username, email, password)
 
+    session['user_id'] = get_user_id(db, username)
     session['username'] = username  
+
     return redirect(url_for("main_page"))
 
 @app.route('/sign-in', methods=['POST', 'GET'])
@@ -62,13 +67,11 @@ def login():
     username = request.form["login"]
     password = request.form['password']   
 
-    if check_user(cursor, username, password)[0]:
-
-      # session['user_id'] = user_id
+    if check_user(db, username, password)[0]:
+      session['user_id'] = get_user_id(db, username)
       session['username'] = username  
       return redirect(url_for("main_page"))
     else: 
-      # error = check_user(username, password)[1]
       return render_template("sign-in.html")
 
 @app.route('/log-out')
