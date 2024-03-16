@@ -60,12 +60,7 @@ def registration():
     password = request.form['password']
     add_user(db, username, email, password)
 
-    session['user_id'] = get_user_id(db, login)
-    user_data = get_user_data(db, session['user_id'])
-
-    session['logged_in'] = True
-    session['username'] = user_data[1]
-    session['email'] = user_data[2]
+    add_userData_toSession(username)
 
     return redirect(url_for("main_page"))
 
@@ -76,28 +71,27 @@ def login():
   
   elif request.method == "POST":
     # Может быть либо именем либо почтой
-    login = request.form["login"]  
+    username = request.form["login"]  
     password = request.form['password']   
     
-    # to-do написать логику которая проверяет если это имя или почта
-    # login = login
-
-    if check_user(db, login, password)[0]:
-      session['user_id'] = get_user_id(db, login)
-      user_data = get_user_data(db, session['user_id'])
-
-      session['logged_in'] = True
-      session['username'] = user_data[1]
-      session['email'] = user_data[2]
-
+    if check_user(db, username, password)[0]:
+      add_userData_toSession(username)
       return redirect(url_for("main_page"))
     else: 
       return render_template("sign-in.html")
 
 @app.route('/log-out')
 def logout():
-    session.clear()
-    return redirect(url_for('main_page'))
+  session.clear()
+  return redirect(url_for('main_page'))
+
+def add_userData_toSession(login):
+  session['user_id'] = get_user_id(db, login)
+  user_data = get_user_data(db, session['user_id'])
+  
+  session['logged_in'] = True
+  session['username'] = user_data[1]
+  session['email'] = user_data[2]
 
 if __name__ == '__main__':
   app.run(host='0.0.0.0', port='43345', debug=True)
