@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, session, redirect, url_for, jsonify
+from flask import Flask, render_template, request, session, redirect, url_for
 from extractor import extractVideoData
 from filter_formats import filterFormats
 from db_logic import *
@@ -47,7 +47,13 @@ def download():
 
 @app.route('/profile', methods=["POST", "GET"])
 def get_profile_info():
-  return render_template('profile.html')
+  return render_template(
+    'profile.html',
+    username = session['username'],
+    email = session['email'],
+    password = session['password'],
+    history = session['history']
+    )
 
 @app.route('/sign-up', methods=['POST', 'GET'])
 def registration():
@@ -88,10 +94,12 @@ def logout():
 def add_userData_toSession(login):
   session['user_id'] = get_user_id(db, login)
   user_data = get_user_data(db, session['user_id'])
-  
+
   session['logged_in'] = True
   session['username'] = user_data[1]
   session['email'] = user_data[2]
+  session['password'] = user_data[3]
+  session['history'] = user_data[4]
 
 if __name__ == '__main__':
   app.run(host='0.0.0.0', port='43345', debug=True)
