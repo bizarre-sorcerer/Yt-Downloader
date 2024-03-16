@@ -9,6 +9,11 @@
       href="{{ url_for('static',
       filename='styles.css') }}">
 
+    <link 
+      rel="icon"
+      href="{{ url_for('static', filename='favicon.ico') }}"
+      type="image/x-icon">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
@@ -17,6 +22,7 @@
   <body>
     <h1>logged in</h1>
     <button onclick="location.href='/log-out'">Выйти</button>
+    <button onclick="location.href='/profile'">profile</button>
 
     <header>
       <h1 class="header-text">Установщик YouTube видео и аудио</h1>

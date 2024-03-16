@@ -38,3 +38,8 @@ def get_user_id(db, username):
   user = cursor.fetchone()
   return user[0] if user else None
   
+def get_user_data(db, user_id):
+  cursor = db.cursor()
+  cursor.execute("select * from user_data where id = %s", (user_id, ))
+  user_data = cursor.fetchone()
+  return user_data

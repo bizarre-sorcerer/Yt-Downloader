@@ -1,24 +1,30 @@
 from flask import Flask, render_template, request, session, redirect, url_for, jsonify
 from extractor import extractVideoData
 from filter_formats import filterFormats
-from db_logic import add_user, check_user, save_to_history, get_user_id
+from db_logic import *
 import mysql.connector
 
 app = Flask(__name__)
 app.secret_key = 'eaa2cc52a16507cf194e4f0c'
 
 db = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    password="",
-    database="ytdownloader_data"
-  )
+  host="localhost",
+  user="root",
+  password="",
+  database="ytdownloader_data"
+)
 
 @app.route('/')
 def main_page():
   print(session)
-  if 'username' in session:
-    return render_template('index-logged-in.html', username=session['username'])
+
+  if 'logged_in' in session:
+    get_user_data(db, session['user_id'])
+
+    print(session)
+    return render_template(
+      'index-logged-in.html',
+      )
   else:
     return render_template('index.html')
   
@@ -26,13 +32,10 @@ def main_page():
 def download():
   videoUrl = request.form["video_url"]
   videoData = extractVideoData(videoUrl)
-
   title = videoData["title"]
   formats = filterFormats(videoData["formats"])
   thumbnail = videoData["thumbnail"]
-
   user_id = session["user_id"]
-  print(videoUrl, user_id)
   save_to_history(db, videoUrl, user_id)
 
   return render_template(
@@ -41,6 +44,10 @@ def download():
     formats=formats,
     thumbnail=thumbnail
   )
+
+@app.route('/profile', methods=["POST", "GET"])
+def get_profile_info():
+  return render_template('profile.html')
 
 @app.route('/sign-up', methods=['POST', 'GET'])
 def registration():
@@ -53,8 +60,12 @@ def registration():
     password = request.form['password']
     add_user(db, username, email, password)
 
-    session['user_id'] = get_user_id(db, username)
-    session['username'] = username  
+    session['user_id'] = get_user_id(db, login)
+    user_data = get_user_data(db, session['user_id'])
+
+    session['logged_in'] = True
+    session['username'] = user_data[1]
+    session['email'] = user_data[2]
 
     return redirect(url_for("main_page"))
 
@@ -64,19 +75,28 @@ def login():
     return render_template("sign-in.html")
   
   elif request.method == "POST":
-    username = request.form["login"]
+    # Может быть либо именем либо почтой
+    login = request.form["login"]  
     password = request.form['password']   
+    
+    # to-do написать логику которая проверяет если это имя или почта
+    # login = login
 
-    if check_user(db, username, password)[0]:
-      session['user_id'] = get_user_id(db, username)
-      session['username'] = username  
+    if check_user(db, login, password)[0]:
+      session['user_id'] = get_user_id(db, login)
+      user_data = get_user_data(db, session['user_id'])
+
+      session['logged_in'] = True
+      session['username'] = user_data[1]
+      session['email'] = user_data[2]
+
       return redirect(url_for("main_page"))
     else: 
       return render_template("sign-in.html")
 
 @app.route('/log-out')
 def logout():
-    session.pop('username', None)
+    session.clear()
     return redirect(url_for('main_page'))
 
 if __name__ == '__main__':
