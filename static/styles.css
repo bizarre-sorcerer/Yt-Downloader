@@ -31,7 +31,7 @@ header{
   gap: 5px
 }
 
-.header-btn{
+.ghost-btn{
   height: 35px;
   padding: 0 10px 0 10px;
   color: white;
@@ -41,7 +41,7 @@ header{
   opacity: .8;
 }
 
-.call-to-action{
+.callToAction-btn{
   background-color: #0485ff;
   color: white;
   opacity: 1;
@@ -97,15 +97,6 @@ form{
   border:2px solid #0485ff;
 }
 
-.convert-button {
-  height: 40px;
-  width: 100px;
-  border-radius: 3px;
-  border: 1px solid white;
-  background: #0485ff;
-  color:white;
-}
-
 .info{
   display: flex;
   flex-direction: column;
@@ -115,6 +106,11 @@ form{
 .info h2{
   font-size: 20px;
   text-align: center;
+}
+
+.log-out-container{
+  align-self: flex-start;
+  padding-left: 20px;
 }
 
 p{
