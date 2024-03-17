@@ -148,3 +148,71 @@ p{
   color: white;
 }
 
+.personal-cabinet{
+  margin-bottom: 15px
+}
+
+.personal-data-header{
+  margin: 0 0 10px 0
+}
+
+.table{
+  display: flex;
+  justify-content: space-between;
+  width: 80vw;
+  padding: 10px 20px 10px 20px;
+  border: solid 1px white 
+}
+
+.data-column{
+  display: flex;
+  flex-direction: column;
+}
+
+.data-column span{
+  padding: 10px;
+  width: 100px
+}
+
+.history{  
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  cursor: pointer;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+  background-color: #191919;
+  margin: 78% auto;
+  padding: 20px;
+  border: 1px solid white;
+  width: 80%;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}

@@ -10,10 +10,56 @@
       href="{{ url_for('static',
       filename='styles.css') }}">
   </head>
+
   <body>
-    {{username}}
-    {{email}}
-    {{password}}
-    {{history}}
+    <h2 class="personal-cabinet">Личный кабинет</h2>
+
+    <div class="personal-data">
+      <h3 class="personal-data-header">Личные данные</h3>
+
+      <div class="table">
+        <div class="data-column data-key">
+          <span>Имя:</span>
+          <span>Почта:</span>
+          <span>Пароль:</span>
+          <span>История скачиваний:</span>
+        </div>
+  
+        <div class="data-column data-value">
+          <span> {{username}} </span> 
+          <span> {{email}} </span>
+          <span> {{password}} </span>
+          <span class="history" id="history"> {{history}} </span>
+        </div>
+      </div>
+    </div>
+
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <p id="modalText"></p>
+      </div>
+    </div>
   </body>
+  <script>
+    var span = document.getElementById('history')
+    var modal = document.getElementById('myModal')
+    var close = document.getElementsByClassName('close')[0]
+    var modalText = document.getElementById('modalText')
+
+    span.onclick = function() {
+        modal.style.display = 'block';
+        modalText.innerText = this.innerText;
+    }
+
+    close.onclick = function() {
+        modal.style.display = 'none';
+    }
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = 'none';
+        }
+    }
+  </script>
 </html>
