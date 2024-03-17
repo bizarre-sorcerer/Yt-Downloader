@@ -18,17 +18,20 @@ def extractVideoData(url):
   # Получаем json данные на ютуб видео
   command = f"yt-dlp --dump-json {url}"
   output = os.popen(command).read()
-  videoData = json.loads(output)
-
-  # Нужные данные про видео вытаскиваю и сохраняю в переменные
-  formats = videoData["formats"]
-  formats = [extractFormatData(formatData) for formatData in formats] # Получает данные на все форматы
-  title = videoData["title"]
-  thumbnail = videoData["thumbnail"]
+  if output:
+    videoData = json.loads(output)
+    # Нужные данные про видео вытаскиваю и сохраняю в переменные
+    formats = videoData["formats"]
+    formats = [extractFormatData(formatData) for formatData in formats] # Получает данные на все форматы
+    title = videoData["title"]
+    thumbnail = videoData["thumbnail"]
+    
+    return {
+      "title": title, 
+      "formats": formats,
+      "thumbnail": thumbnail
+    }
+  else:
+    print("No output to parse")
+    return None
   
-  return {
-    "title": title, 
-    "formats": formats,
-    "thumbnail": thumbnail
-  }
-

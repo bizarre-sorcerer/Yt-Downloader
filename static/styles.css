@@ -38,7 +38,7 @@ header{
   border: 1px solid white;
   border-radius: 3px;
   background: transparent;
-  opacity: .75;
+  opacity: .8;
 }
 
 .sign-in{
@@ -112,7 +112,9 @@ form{
   text-align: center;
 }
 
-.log-out-container{
+.profile-btns-container{
+  display: flex;
+  gap: 20px;
   align-self: flex-start;
   padding-left: 20px;
 }
@@ -172,10 +174,7 @@ h1{
 
 .data-column span{
   padding: 10px;
-  width: 100px
-}
-
-.history{  
+  width: 100px;
   display: block;
   white-space: nowrap;
   overflow: hidden;
@@ -198,7 +197,7 @@ h1{
 
 .modal-content {
   background-color: #191919;
-  margin: 78% auto;
+  margin: 35% auto;
   padding: 20px;
   border: 1px solid white;
   width: 80%;
