@@ -9,6 +9,47 @@ body {
   margin: 0 0 50px 0;
 }
 
+header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90vw;
+  height: 50px;
+}
+
+.menu{
+  display: flex;
+}
+
+.logo{
+  display: flex;
+  flex-direction: column;
+}
+
+.btns-container{
+  display: flex;
+  gap: 5px
+}
+
+.reg-btn{
+  height: 35px;
+  padding: 0 10px 0 10px;
+  color: white;
+  border: 1px solid white;
+  background: transparent;
+  opacity: .7;
+}
+
+.call-to-action{
+  background-color: #0485ff;
+  color: white;
+  opacity: 1;
+}
+
+hr{
+  width: 100vw;
+}
+
 .main-container{
   width: 80vw;
   padding: 0 20px 0 20px;
@@ -59,6 +100,7 @@ form{
   height: 40px;
   width: 100px;
   border-radius: 3px;
+  border: 1px solid white;
   background: #0485ff;
   color:white;
 }
@@ -95,8 +137,8 @@ p{
 .format-button{
   height: 40px;
   border-radius: 3px;
-  border:2px solid #0485ff;
-  background: #0485ff;
+  border: 1px solid rgb(122, 111, 241);
+  background: rgb(122, 111, 241);
   color:white;
 }
 
@@ -104,3 +146,4 @@ p{
   text-decoration: none;
   color: white;
 }
+
