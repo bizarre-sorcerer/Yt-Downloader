@@ -39,11 +39,12 @@ def download():
 
 @app.route('/profile', methods=["POST", "GET"])
 def get_profile_info():
+  password = hide_password(session['password']) 
   return render_template(
     'profile.html',
     username = session['username'],
     email = session['email'],
-    password = session['password'],
+    password = password,
     history = session['history']
     )
 
@@ -92,6 +93,14 @@ def add_userData_toSession(login):
   session['email'] = user_data[2]
   session['password'] = user_data[3]
   session['history'] = user_data[4]
+
+def hide_password(password):
+  result = ""
+
+  for i in range(len(password)):
+    result += "*"
+
+  return result
 
 if __name__ == '__main__':
   app.run(host='0.0.0.0', port='43345', debug=True)
