@@ -31,13 +31,14 @@ header{
   gap: 5px
 }
 
-.reg-btn{
+.header-btn{
   height: 35px;
   padding: 0 10px 0 10px;
   color: white;
   border: 1px solid white;
+  border-radius: 3px;
   background: transparent;
-  opacity: .7;
+  opacity: .8;
 }
 
 .call-to-action{

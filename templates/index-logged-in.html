@@ -20,13 +20,20 @@
   </head>  
   
   <body>
-    <h1>logged in</h1>
-    <button onclick="location.href='/log-out'">Выйти</button>
-    <button onclick="location.href='/profile'">profile</button>
-
+    <!-- <button onclick="location.href='/log-out'">Выйти</button> -->
+    
     <header>
-      <h1 class="header-text">Установщик YouTube видео и аудио</h1>
+      <div class="logo">
+        <span>YTMP4</span>
+        <span>downloader</span>
+      </div>
+      
+      <div class="btns-container">        
+        <button onclick="location.href='/profile'" class="header-btn">Профиль</button>
+      </div>
     </header>
+
+    <h1 class="header-text">Установщик YouTube видео и аудио</h1>
 
     <div class="convert-container main-container">
       <h4>Вставьте корректную ссылку на ютуб видео</h4>
