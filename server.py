@@ -16,16 +16,7 @@ db = mysql.connector.connect(
 
 @app.route('/')
 def main_page():
-	print(session)
 	return render_template('index.html')
-	# if 'logged_in' in session:
-	#   get_user_data(db, session['user_id'])
-
-	#   print(session)
-	#   return render_template(
-	#     'index-logged-in.html',
-	#     )
-	# else:
   
 @app.route('/download', methods=["POST"])
 def download():

@@ -4,15 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+    <link 
+    rel="stylesheet"
+    href="{{ url_for('static',
+    filename='styles.css') }}">
+
+    <link 
+      rel="icon"
+      href="{{ url_for('static', filename='favicon.ico') }}"
+      type="image/x-icon">
+
   </head>
   <body>
-    <form action="/sign-up" method="post">
-      <input type="text" placeholder="username" name="username">
-      <input type="email" placeholder="email" name="email">
-      <input type="password" placeholder="password" name="password">
+    <header>
+      <div class="logo">
+        <span>YTMP4</span>
+        <span>downloader</span>
+      </div>
       
-      <button type="submit">Создать</button>
-    </form>
+      <div class="btns-container">        
+        <button onclick="location.href='/'" class="ghost-btn">Назад</button>
+      </div>
+    </header>
+    
+    <h1>Регистрация</h1>
 
+    <div class="reg-container">
+      <form action="/sign-up" method="post" class="reg-form">
+        <input type="text" placeholder="username" name="username" class="reg-input">
+        <input type="email" placeholder="email" name="email" class="reg-input">
+        <input type="password" placeholder="password" name="password" class="reg-input">
+        <a href="/sign-in" class="sign-in-link">Уже есть аккаунт?</a>
+
+        <button type="submit" class="ghost-btn reg-btn">Создать</button>
+      </form>
+    </div>
   </body>
 </html>

@@ -4,11 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+    <link 
+      rel="stylesheet"
+      href="{{ url_for('static',
+      filename='styles.css') }}">
+
+    <link 
+      rel="icon"
+      href="{{ url_for('static', filename='favicon.ico') }}"
+      type="image/x-icon">  
   </head>
+
   <body>
     <form action="/sign-in" method="post">
-      <input type="text" placeholder="Никнейм или почта" name="login">
-      <input type="password" placeholder="Password" name="password">
+      <input type="text" placeholder="Никнейм или почта" name="login" class="reg-input">
+      <input type="password" placeholder="Password" name="password" class="reg-input">
       
       <button type="submit">Войти</button>
     </form>
