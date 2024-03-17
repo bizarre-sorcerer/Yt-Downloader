@@ -32,8 +32,21 @@
     
     <div class="reg-container">
       <form action="/sign-in" method="post" class="reg-form">
-        <input type="text" placeholder="username/email" name="login" class="reg-input">
-        <input type="password" placeholder="password" name="password" class="reg-input">
+        <input 
+          type="text"
+          placeholder="username/email"
+          name="login"
+          autocomplete="nope"
+          class="reg-input">
+
+        <input 
+          type="password"
+          placeholder="password"
+          name="password"
+          autocomplete="nope"
+          class="reg-input">
+          
+        <a href="/sign-up" class="sign-in-link">Нет аккаунта?</a>
 
         <button type="submit" class="ghost-btn reg-btn">Войти</button>
       </form>

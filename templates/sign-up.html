@@ -32,9 +32,26 @@
 
     <div class="reg-container">
       <form action="/sign-up" method="post" class="reg-form">
-        <input type="text" placeholder="username" name="username" class="reg-input">
-        <input type="email" placeholder="email" name="email" class="reg-input">
-        <input type="password" placeholder="password" name="password" class="reg-input">
+        <input type="text"
+          placeholder="username"
+          name="username"
+          autocomplete="off"
+          class="reg-input">
+        
+        <input
+          type="email"
+          placeholder="email"
+          name="email"
+          autocomplete="off"
+          class="reg-input">
+
+        <input
+          type="password"
+          placeholder="password"
+          name="password"
+          autocomplete="off"
+          class="reg-input">
+
         <a href="/sign-in" class="sign-in-link">Уже есть аккаунт?</a>
 
         <button type="submit" class="ghost-btn reg-btn">Создать</button>

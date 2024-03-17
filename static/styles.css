@@ -38,7 +38,7 @@ header{
   border: 1px solid white;
   border-radius: 3px;
   background: transparent;
-  opacity: .7;
+  opacity: .75;
 }
 
 .sign-in{
@@ -234,8 +234,8 @@ h1{
   height: 36px;
   padding-left: 7px;
   border: 1px solid #0485ff;
-  background-color: #191919;
-  color: white;
+  background-color: #191919 !important;
+  color: white !important;
   outline: none;
 }
 
