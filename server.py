@@ -16,17 +16,16 @@ db = mysql.connector.connect(
 
 @app.route('/')
 def main_page():
-  print(session)
+	print(session)
+	return render_template('index.html')
+	# if 'logged_in' in session:
+	#   get_user_data(db, session['user_id'])
 
-  if 'logged_in' in session:
-    get_user_data(db, session['user_id'])
-
-    print(session)
-    return render_template(
-      'index-logged-in.html',
-      )
-  else:
-    return render_template('index.html')
+	#   print(session)
+	#   return render_template(
+	#     'index-logged-in.html',
+	#     )
+	# else:
   
 @app.route('/download', methods=["POST"])
 def download():
@@ -35,8 +34,10 @@ def download():
   title = videoData["title"]
   formats = filterFormats(videoData["formats"])
   thumbnail = videoData["thumbnail"]
-  user_id = session["user_id"]
-  save_to_history(db, videoUrl, user_id)
+
+  if "logged_in" in session:
+    user_id = session["user_id"]
+    save_to_history(db, videoUrl, user_id)
 
   return render_template(
     'download.html',

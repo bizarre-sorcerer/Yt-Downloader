@@ -16,8 +16,24 @@
   
   <body>
     <header>
-      <h1 class="header-text">Установщик YouTube видео и аудио</h1>
+      <div class="logo">
+        <span>YTMP4</span>
+        <span>downloader</span>
+      </div>
+
+      {% if 'logged_in' in session %}
+        <div class="btns-container">        
+          <button onclick="location.href='/profile'" class="ghost-btn">Профиль</button>
+        </div>
+      {% else %}
+        <div class="btns-container">
+          <button onclick="location.href='/sign-in'" class="ghost-btn callToAction-btn">Войти</button>
+          <button onclick="location.href='/sign-up'" class="ghost-btn">Регистрация</button>
+        </div>
+      {% endif %}
     </header>
+
+    <h1 class="header-text">Установщик YouTube видео и аудио</h1>
 
     <div class="convert-container main-container">
       <h4>Вставьте корректную ссылку на ютуб видео</h4>
