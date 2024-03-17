@@ -17,12 +17,26 @@
   </head>
 
   <body>
-    <form action="/sign-in" method="post">
-      <input type="text" placeholder="Никнейм или почта" name="login" class="reg-input">
-      <input type="password" placeholder="Password" name="password" class="reg-input">
+    <header>
+      <div class="logo">
+        <span>YTMP4</span>
+        <span>downloader</span>
+      </div>
       
-      <button type="submit">Войти</button>
-    </form>
+      <div class="btns-container">        
+        <button onclick="location.href='/'" class="ghost-btn">Назад</button>
+      </div>
+    </header>
 
+    <h1>Аутентификация</h1>
+    
+    <div class="reg-container">
+      <form action="/sign-in" method="post" class="reg-form">
+        <input type="text" placeholder="username/email" name="login" class="reg-input">
+        <input type="password" placeholder="password" name="password" class="reg-input">
+
+        <button type="submit" class="ghost-btn reg-btn">Войти</button>
+      </form>
+    </div>
   </body>
 </html>

@@ -38,7 +38,11 @@ header{
   border: 1px solid white;
   border-radius: 3px;
   background: transparent;
-  opacity: .8;
+  opacity: .7;
+}
+
+.sign-in{
+  opacity: 1;
 }
 
 .callToAction-btn{
