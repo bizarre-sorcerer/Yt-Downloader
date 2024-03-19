@@ -43,3 +43,7 @@ def get_user_data(db, user_id):
   cursor.execute("select * from user_data where id = %s", (user_id, ))
   user_data = cursor.fetchone()
   return user_data
+
+def delete_user_data(db):
+  cursor = db.cursor()
+  cursor.execute("truncate table user_data")

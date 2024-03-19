@@ -16,8 +16,8 @@ db = mysql.connector.connect(
 
 @app.route('/')
 def main_page():
-	return render_template('index.html')
-  
+  return render_template('index.html')
+
 @app.route('/download', methods=["POST"])
 def download():
   videoUrl = request.form["video_url"]
