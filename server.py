@@ -22,24 +22,21 @@ def main_page():
 def download():
   videoUrl = request.form["video_url"]
   
-  if videoUrl and videoData:
-    videoData = extractVideoData(videoUrl)
-    title = videoData["title"]
-    formats = filterFormats(videoData["formats"])
-    thumbnail = videoData["thumbnail"]
+  videoData = extractVideoData(videoUrl)
+  title = videoData["title"]
+  formats = filterFormats(videoData["formats"])
+  thumbnail = videoData["thumbnail"]
 
-    if "logged_in" in session:
-      user_id = session["user_id"]
-      save_to_history(db, videoUrl, user_id)
+  if "logged_in" in session:
+    user_id = session["user_id"]
+    save_to_history(db, videoUrl, user_id)
 
-    return render_template(
-      'download.html',
-      title=title,
-      formats=formats,
-      thumbnail=thumbnail
-    )
-  else: 
-    return render_template('index.html')
+  return render_template(
+    'download.html',
+    title=title,
+    formats=formats,
+    thumbnail=thumbnail
+  )
 
 @app.route('/profile', methods=["POST", "GET"])
 def get_profile_info(): 
