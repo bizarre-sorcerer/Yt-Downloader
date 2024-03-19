@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, session, redirect, url_for
 from extractor import extractVideoData
 from filter_formats import filterFormats
-from db_logic import *
+from data_base.db_logic import *
 import mysql.connector
 
 app = Flask(__name__)
