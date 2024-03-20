@@ -1,5 +1,3 @@
-from flask import jsonify
-
 def add_user(db, username, email, password):
   cursor = db.cursor()
   add_data_query = "INSERT INTO user_data (username, email, password) VALUES (%s, %s, %s)"
