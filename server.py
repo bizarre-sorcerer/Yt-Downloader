@@ -29,6 +29,7 @@ def download():
 
   if "logged_in" in session:
     user_id = session["user_id"]
+    session['history'] += videoUrl
     save_to_history(db, videoUrl, user_id)
 
   return render_template(
@@ -41,13 +42,14 @@ def download():
 @app.route('/profile', methods=["POST", "GET"])
 def get_profile_info(): 
   password = hide_password(session['password']) 
+  print(session['history'])
   return render_template(
     'profile.html',
     username = session['username'],
     email = session['email'],
     password = password,
     history = session['history']
-    )
+  )
 
 @app.route('/sign-up', methods=['POST', 'GET'])
 def registration():
