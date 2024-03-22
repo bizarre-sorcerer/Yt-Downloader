@@ -1,3 +1,14 @@
+def create_table(db):
+    cursor = db.cursor()
+    query = '''create table if not exists user_data(
+        id int auto_increment primary key,
+        username varchar(255),
+        email varchar(255),
+        password varchar(255)
+    )'''
+    cursor.execute(query)  
+    db.commit()
+
 def add_user(db, username, email, password):
   cursor = db.cursor()
   add_data_query = "INSERT INTO user_data (username, email, password) VALUES (%s, %s, %s)"
