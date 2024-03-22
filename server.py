@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, session, redirect, url_for
-from extractor import extractVideoData
-from filter_formats import filterFormats
+from scripts.extractor import extractVideoData
+from scripts.filter_formats import filterFormats
 from data_base.db_logic import *
 import mysql.connector
 

@@ -13,11 +13,11 @@ def save_to_file(data, filename="yt_dlp_data.json"):
   with open(file_path, "w") as json_file:
     json.dump(data, json_file, indent=2)
 
-
 def get_yt_dlp_json(url):
   command = f'yt-dlp --dump-json "{url}"'
   output = os.popen(command).read()
   return output
+
 
 if __name__ == "__main__":
   if len(sys.argv) != 2:

@@ -9,20 +9,20 @@ def removeDuplicateQualities(formats):
   filteredFormats = []
 
   for format_ in formats:
-      # Extract the resolution from the formatName
+      # Извлечение разрешения из formatName
       format_parts = format_["formatName"].split(' ')
       resolution = None
 
-      # Search for resolution enclosed in brackets
+      # Убирает скобки лишние с строки формата
       for part in format_parts:
           if part.startswith('(') and part.endswith(')'):
-              resolution = part[1:-1]  # Remove brackets
+              resolution = part[1:-1]  
               break
 
-      # If resolution found and not encountered before, add format to filtered list
+      # Если разрешение найдено и не встречалось ранее, формат добавляется в список фильтров
       if resolution and resolution not in encounteredResolutions:
-          filteredFormats.append(format_)
-          encounteredResolutions.add(resolution)
+        filteredFormats.append(format_)
+        encounteredResolutions.add(resolution)
 
   return filteredFormats
 
