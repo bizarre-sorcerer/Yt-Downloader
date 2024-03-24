@@ -4,7 +4,8 @@ def create_table(db):
         id int auto_increment primary key,
         username varchar(255),
         email varchar(255),
-        password varchar(255)
+        password varchar(255),
+        history text(255)
     )'''
     cursor.execute(query)  
     db.commit()
