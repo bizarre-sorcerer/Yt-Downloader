@@ -16,6 +16,7 @@ db = mysql.connector.connect(
 
 @app.route('/')
 def main_page():
+  create_table(db)
   return render_template('index.html')
 
 @app.route('/download', methods=["POST"])
