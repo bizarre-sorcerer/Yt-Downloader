@@ -1,18 +1,13 @@
 from flask import Flask, render_template, request, session, redirect, url_for
+import mysql.connector
+import multiprocessing
 from scripts.extractor import extractVideoData
 from scripts.filter_formats import filterFormats
+from scripts.start_mysql import start_mysql
 from data_base.db_logic import *
-import mysql.connector
 
 app = Flask(__name__)
 app.secret_key = 'eaa2cc52a16507cf194e4f0c'
-
-db = mysql.connector.connect(
-  host="localhost",
-  user="root",
-  password="",
-  database="ytdownloader_data"
-)
 
 @app.route('/')
 def main_page():
@@ -107,4 +102,15 @@ def hide_password(password):
   return result
 
 if __name__ == '__main__':
-  app.run(host='0.0.0.0', port='43345', debug=True)
+    p = multiprocessing.Process(target=start_mysql)
+    p.start()
+
+    db = mysql.connector.connect(
+        host="localhost",
+        user="root",
+        password="",
+        database="ytdownloader_data"
+    )
+    
+    app.run(host='0.0.0.0', port='5000', debug=True)
+

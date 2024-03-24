@@ -7,3 +7,4 @@ Download the video(without audio):
 Get json data: 
   yt-dlp --dump-json https://youtu.be/-z7hmAb2eqQ?si=TeeZyLqQwIAoaeI2
 
+cd 
