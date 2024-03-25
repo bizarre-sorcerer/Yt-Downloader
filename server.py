@@ -1,10 +1,11 @@
 from flask import Flask, render_template, request, session, redirect, url_for
-import mysql.connector
-import multiprocessing
 from scripts.extractor import extractVideoData
 from scripts.filter_formats import filterFormats
 from scripts.start_mysql import start_mysql
+from scripts.send_email import *
 from data_base.db_logic import *
+import mysql.connector
+import multiprocessing
 
 app = Flask(__name__)
 app.secret_key = 'eaa2cc52a16507cf194e4f0c'
@@ -46,6 +47,20 @@ def get_profile_info():
     password = password,
     history = session['history']
   )
+
+@app.route('/recovery', methods=['POST', 'GET'])
+def password_recovery():
+    if request.method == "GET":
+        return render_template('password_recovery.html')
+    elif request.method == "POST":
+        email = request.form["email"] 
+        token = generate_token(email)
+        send_email(email, token)
+        return redirect(url_for('login'))
+    
+@app.route('/change_password', methods={"POST", "GET"})
+def change_password():
+  return "changing password logic"
 
 @app.route('/sign-up', methods=['POST', 'GET'])
 def registration():
