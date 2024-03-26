@@ -39,7 +39,7 @@ def download():
 @app.route('/profile', methods=["POST", "GET"])
 def get_profile_info(): 
   password = hide_password(session['password']) 
-  print(session['history'])
+
   return render_template(
     'profile.html',
     username = session['username'],
@@ -63,12 +63,12 @@ def change_password():
     if request.method == 'GET':
         return render_template('change_password.html')
     elif request.method == "POST":
-        username = request.form["username"]
+        email = request.form["email"]
         new_password = request.form['new_password']
         confirm_password = request.form['confirm_password']
 
         if new_password == confirm_password:
-            user_id = get_user_id(db, username)
+            user_id = get_user_id(db, login='email', value=email)
             change_user_password(db, user_id, new_password)
 
             return redirect(url_for('login'))
@@ -107,18 +107,20 @@ def login():
 
 @app.route('/log-out')
 def logout():
-  session.clear()
-  return redirect(url_for('main_page'))
+    session.clear()
+    return redirect(url_for('main_page'))
 
 def add_userData_toSession(login):
-  session['user_id'] = get_user_id(db, login)
-  user_data = get_user_data(db, session['user_id'])
+    session['user_id'] = get_user_id(db, login='username', value=login)
+    print(session['user_id'])
+    user_data = get_user_data(db, session['user_id'])
+    print(user_data)
 
-  session['logged_in'] = True
-  session['username'] = user_data[1]
-  session['email'] = user_data[2]
-  session['password'] = user_data[3]
-  session['history'] = user_data[4]
+    session['logged_in'] = True
+    session['username'] = user_data[1]
+    session['email'] = user_data[2]
+    session['password'] = user_data[3]
+    session['history'] = user_data[4]
 
 def hide_password(password):
   result = ""
