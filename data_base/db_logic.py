@@ -38,22 +38,34 @@ def check_user(db, login, password):
   ]
 
 def save_to_history(db, url, user_id):
-  cursor = db.cursor()
-  cursor.execute("UPDATE user_data SET history = CONCAT(history, ', ', %s) WHERE id = %s", (url, user_id))  
-  db.commit()
+    cursor = db.cursor()
+    cursor.execute("UPDATE user_data SET history = CONCAT(history, ', ', %s) WHERE id = %s", (url, user_id))  
+    db.commit()
+
+def change_user_password(db, user_id, new_password):
+    cursor = db.cursor()
+    cmd = '''update user_data set password = %s where id = %s'''
+    cursor.execute(cmd, (new_password, user_id))
+    db.commit()
 
 def get_user_id(db, username):
-  cursor = db.cursor()
-  cursor.execute("SELECT id FROM user_data WHERE username = %s", (username, ))
-  user = cursor.fetchone()
-  return user[0] if user else None
+    cursor = db.cursor()
+    cursor.execute("SELECT id FROM user_data WHERE username = %s", (username, ))
+    user = cursor.fetchone()
+    return user[0] if user else None
+    
+def get_user_id_byEmail(db, email):
+    cursor = db.cursor()
+    cursor.execute("SELECT id FROM user_data WHERE username = %s", (email, ))
+    user = cursor.fetchone()
+    return user[0] if user else None
   
 def get_user_data(db, user_id):
-  cursor = db.cursor()
-  cursor.execute("select * from user_data where id = %s", (user_id, ))
-  user_data = cursor.fetchone()
-  return user_data
+    cursor = db.cursor()
+    cursor.execute("select * from user_data where id = %s", (user_id, ))
+    user_data = cursor.fetchone()
+    return user_data
 
 def delete_user_data(db):
-  cursor = db.cursor()
-  cursor.execute("truncate table user_data")
+    cursor = db.cursor()
+    cursor.execute("truncate table user_data")

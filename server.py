@@ -60,7 +60,19 @@ def password_recovery():
     
 @app.route('/change_password', methods={"POST", "GET"})
 def change_password():
-  return "changing password logic"
+    if request.method == 'GET':
+        return render_template('change_password.html')
+    elif request.method == "POST":
+        username = request.form["username"]
+        new_password = request.form['new_password']
+        confirm_password = request.form['confirm_password']
+
+        if new_password == confirm_password:
+            user_id = get_user_id(db, username)
+            change_user_password(db, user_id, new_password)
+
+            return redirect(url_for('login'))
+        return render_template('change_password.html')
 
 @app.route('/sign-up', methods=['POST', 'GET'])
 def registration():
