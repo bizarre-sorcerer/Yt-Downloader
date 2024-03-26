@@ -48,12 +48,12 @@ def change_user_password(db, user_id, new_password):
     cursor.execute(cmd, (new_password, user_id))
     db.commit()
 
-def get_user_id(db, login, value):
+def get_user_id(db, column_name, value):
     cursor = db.cursor()
 
-    if login == 'username':
+    if column_name == 'username':
         cursor.execute("SELECT id FROM user_data WHERE username = %s", (value,))
-    elif login == 'email':
+    elif column_name == 'email':
         cursor.execute("SELECT id FROM user_data WHERE email = %s", (value,))
     else:
         print("Invalid login type. Use 'username' or 'email'.")

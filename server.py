@@ -68,7 +68,7 @@ def change_password():
         confirm_password = request.form['confirm_password']
 
         if new_password == confirm_password:
-            user_id = get_user_id(db, login='email', value=email)
+            user_id = get_user_id(db, column_name='email', value=email)
             change_user_password(db, user_id, new_password)
 
             return redirect(url_for('login'))
@@ -111,10 +111,8 @@ def logout():
     return redirect(url_for('main_page'))
 
 def add_userData_toSession(login):
-    session['user_id'] = get_user_id(db, login='username', value=login)
-    print(session['user_id'])
+    session['user_id'] = get_user_id(db, column_name='username', value=login)
     user_data = get_user_data(db, session['user_id'])
-    print(user_data)
 
     session['logged_in'] = True
     session['username'] = user_data[1]
