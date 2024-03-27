@@ -14,44 +14,54 @@
       rel="icon"
       href="{{ url_for('static', filename='favicon.ico') }}"
       type="image/x-icon">  
+    
+    <link 
+      rel="stylesheet"
+      href="{{ url_for('static',
+      filename='adaptive.css') }}">
+  
   </head>
 
   <body>
     <header>
-      <div class="logo">
-        <span>YTMP4</span>
-        <span>downloader</span>
-      </div>
+      <a href="{{url_for('main_page')}}" id="logo-link">
+        <div class="logo">
+          <span>YTMP4 </span>
+          <span>Downloader</span>
+        </div>
+      </a>
       
       <div class="btns-container">        
         <button onclick="location.href='/'" class="ghost-btn">Назад</button>
       </div>
     </header>
-
-    <h1>Аутентификация</h1>
     
-    <div class="reg-container">
-      <form action="/sign-in" method="post" class="reg-form">
-        <input 
-          type="text"
-          placeholder="username/email"
-          name="login"
-          autocomplete="nope"
-          class="reg-input">
-
-        <input 
-          type="password"
-          placeholder="password"
-          name="password"
-          autocomplete="nope"
-          class="reg-input">
-          
-        <a href="/sign-up" class="sign-in-link">Нет аккаунта?</a>
-
-        <a href="/recovery" class="sign-in-link">Забыли пароль?</a>
-
-        <button type="submit" class="ghost-btn reg-btn">Войти</button>
-      </form>
+    <div class="main-reg-container">
+      <div class="reg-container">    
+        <h1 class="reg-header">Аутентификация</h1>
+        
+        <form action="/sign-in" method="post" class="reg-form">
+          <input 
+            type="text"
+            placeholder="username/email"
+            name="login"
+            autocomplete="nope"
+            class="reg-input">
+  
+          <input 
+            type="password"
+            placeholder="password"
+            name="password"
+            autocomplete="nope"
+            class="reg-input">
+            
+          <a href="/sign-up" class="sign-in-link">Нет аккаунта?</a>
+  
+          <a href="/recovery" class="sign-in-link">Забыли пароль?</a>
+  
+          <button type="submit" class="ghost-btn reg-btn">Войти</button>
+        </form>
+      </div>
     </div>
   </body>
 </html>

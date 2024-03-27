@@ -13,19 +13,21 @@
   }
   
   h1.header-text{
-    font-size: 30px;
+    font-size: 34px;
   }
 
   .main-container{
+    display: flex;
+    justify-content: center;
     width: 60vw;
   }
 
   .main-container h4{
-    font-size: 20px;
+    font-size: 24px;
   }
 
   .convert-container{
-    width: 60%;
+    width: 80%;
     padding: 25px;
     border-radius: 10px;
   }
@@ -36,7 +38,12 @@
 
   .convert-container input{
     width: 32em;
-    height: 45px
+    height: 40px;
+  }
+
+  .convert-container button{
+    width: 80px;
+    height: 40px;
   }
 
   .video-data{
@@ -56,6 +63,8 @@
     border-radius: 15px;
     font-size: 28px;
     opacity: .8;
+    padding: 0 25px 0 25px
+
   }
 
   .formats{
@@ -79,6 +88,22 @@
     text-align: left;
   }
 
-  
+  .main-reg-container{
+    width: 100vw;
+    height: 85vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .reg-container{
+    width: 20vw;
+    border: solid white 1px;
+    padding: 20px 50px 50px 50px;
+  }
+
+  button:hover{
+    opacity: .7
+  }
 }
 

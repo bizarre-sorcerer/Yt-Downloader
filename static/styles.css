@@ -106,7 +106,8 @@ form{
   display: flex;
   align-items: center;
   gap: 10px;
-  width: 100%
+  width: 100%;
+  overflow-x: visible;
 }
 
 .URL-input {
@@ -259,12 +260,25 @@ h1{
 
 .reg-container{
   width: 80%;
+  overflow-x: visible;
+}
+
+.main-reg-container{
+  width: 100vw;
+  height: 85vh;
+  display: flex;
+  justify-content: center;
 }
 
 .reg-form{
   display: flex;
   flex-direction: column;
-  gap: 10px
+  gap: 10px;
+}
+
+.reg-header{
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 .reg-input{

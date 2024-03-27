@@ -44,22 +44,24 @@
     </header>
 
     <div class="ancestor-container">
-      <h1 class="header-text">Установщик YouTube видео и аудио</h1>
+      <h1 class="header-text">Установщик YouTube mp4 и mp3</h1>
 
-      <div class="convert-container main-container">
-        <h4>Вставьте корректную ссылку на ютуб видео</h4>
-        
-        <form action="/download" method="post">  
-          <input 
-            class="URL-input"
-            name="video_url"
-            type="text"
-            placeholder="Video URL e.g. https://www.youtube.com/watch?v=MtN1YnoL46Q">
+      <div class="main-container">
+        <div class="convert-container">
+          <h4>Вставьте корректную ссылку на ютуб видео</h4>
           
-            <button class="ghost-btn callToAction-btn" type="submit">Найти</button>
-          </form>
+          <form action="/download" method="post">  
+            <input 
+              class="URL-input"
+              name="video_url"
+              type="text"
+              placeholder="Video URL e.g. https://www.youtube.com/watch?v=MtN1YnoL46Q">
+            
+              <button class="ghost-btn callToAction-btn" type="submit">Найти</button>
+            </form>
+        </div>
       </div>
-  
+
       <div class="video-data main-container">  
         <!-- <img src="{{thumbnail}}" alt="Resourse not found" class="thumbnail"> -->
         <div class="thumbnail">
