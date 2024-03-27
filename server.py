@@ -111,8 +111,13 @@ def logout():
     return redirect(url_for('main_page'))
 
 def add_userData_toSession(login):
-    session['user_id'] = get_user_id(db, column_name='username', value=login)
+    if '@' not in login:
+        session['user_id'] = get_user_id(db, column_name='username', value=login)
+    else: 
+        session['user_id'] = get_user_id(db, column_name='email', value=login)
+    
     user_data = get_user_data(db, session['user_id'])
+    print(session['user_id'])
 
     session['logged_in'] = True
     session['username'] = user_data[1]

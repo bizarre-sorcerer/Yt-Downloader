@@ -18,7 +18,7 @@ def add_user(db, username, email, password):
 
 def check_user(db, login, password):
   cursor = db.cursor()
-  cursor.execute("SELECT * FROM user_data WHERE username = %s", (login,))
+  cursor.execute("SELECT * FROM user_data WHERE username = %s OR email = %s", (login, login))
   user_data = cursor.fetchone()
 
   if user_data is None:
