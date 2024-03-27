@@ -60,6 +60,27 @@
           </form>
       </div>
   
+      <div class="video-data main-container">  
+        <!-- <img src="{{thumbnail}}" alt="Resourse not found" class="thumbnail"> -->
+        <div class="thumbnail">
+          <span>
+            Здесь будет найденное видео
+          </span>
+
+          <span>
+            Вставьте валидную ссылку на YouTube видео
+          </span>
+        </div>
+
+        <div class="formats">
+          {% for format in formats %}
+          <button class="format-button">
+            <a href="{{format.url}}" class="format-url"> {{format.formatName}}</a>
+          </button>
+          {% endfor %}
+        </div>
+      </div>
+
       <div class="info-containers main-container">
         <div class="info main-container">
           <h2>YouTube MP4/MP3</h2>
@@ -75,7 +96,7 @@
             для работы и на компьютерах и на мобильных устройствах
           </p>
         </div>
-    
+
         <div class="info main-container">
           <h2>Как скачать видео или аудио</h2>
           <p>1. Откройте сайт YouTube.com и найдите видео, которое вы хотите загрузить.</p>
