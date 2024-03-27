@@ -1,0 +1,50 @@
+@media screen and (min-width: 480px) {
+  header{
+    width: 65vw;
+  }
+
+  .logo{
+    flex-direction: row;
+  }
+
+  .logo *{
+    margin-right: 5px;
+    font-size: 26px;
+  }
+  
+  .main-container{
+    width: 60vw;
+  }
+
+  .convert-container{
+    width: 60%;
+    padding: 25px;
+    border-radius: 10px;
+  }
+
+  .convert-container form{
+    width: min-content
+  }
+
+  .convert-container input{
+    width: 32em
+  }
+
+  .info-containers{
+    display: flex;
+    gap: 10px
+  }
+
+  .info{
+    width: 80%;
+    border: solid 1px rgb(100, 100, 100);
+    border-radius: 15px;
+    padding: 5px 25px 25px 25px;
+  }
+
+  .info h2{
+    text-align: left;
+  }
+
+}
+
