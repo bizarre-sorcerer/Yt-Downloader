@@ -1,7 +1,6 @@
 <!DOCTYPE html>
   <html lang="en">
   <head>
-
     <meta charset="UTF-8">
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,7 +19,6 @@
       rel="stylesheet"
       href="{{ url_for('static',
       filename='adaptive.css') }}">
-
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -73,7 +71,7 @@
         <div class="formats">
           {% for format in formats %}
           <button class="format-button">
-            <a href="{{format.url}}" class="format-url"> {{format.formatName}}</a>
+            <a href="{{format.url}}" class="format-url">{{format.formatName}}</a>
           </button>
           {% endfor %}
           

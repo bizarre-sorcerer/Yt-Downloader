@@ -158,9 +158,18 @@ p{
 }
 
 .thumbnail{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: 100%;
+  border: solid white 1px;
+  border-radius: 15px;
+  font-size: 28px;
   margin-bottom: 15px;
+  opacity: .8;
 }
+
 
 .formats{
   display: grid;
