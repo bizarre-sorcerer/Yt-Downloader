@@ -39,7 +39,7 @@ def check_user(db, login, password):
 
 def save_to_history(db, url, user_id):
     cursor = db.cursor()
-    cursor.execute("UPDATE user_data SET history = CONCAT(history, ', ', %s) WHERE id = %s", (url, user_id))  
+    cursor.execute("UPDATE user_data SET history = CONCAT(COALESCE(history, ''), ' ' %s) WHERE id = %s", (url, user_id))  
     db.commit()
 
 def change_user_password(db, user_id, new_password):

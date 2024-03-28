@@ -78,6 +78,11 @@ hr{
   width: 85vw;
 }
 
+.video-data{
+  flex-direction: column;
+  gap: 15px;
+  overflow-x: visible;
+}
 
 .header-text{
   text-align: center;
@@ -154,6 +159,7 @@ form{
   gap: 20px;
   align-self: flex-start;
   padding-left: 20px;
+  margin-top: 15px;
 }
 
 p{
@@ -197,7 +203,7 @@ p{
 
 h1{
   margin: 10px;
-  margin-bottom: 0;
+  margin-bottom: 10px;
 }
 
 .personal-data-header{

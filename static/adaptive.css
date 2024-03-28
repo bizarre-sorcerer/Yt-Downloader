@@ -104,5 +104,9 @@
   button:hover{
     opacity: .7
   }
+
+  .profile-btn-container{
+    align-self: center;
+  }
 }
 

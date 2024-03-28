@@ -26,6 +26,8 @@ def download():
 
   if "logged_in" in session:
     user_id = session["user_id"]
+    print(session['history'])
+    print(session)
     session['history'] += videoUrl
     save_to_history(db, videoUrl, user_id)
 
@@ -123,7 +125,11 @@ def add_userData_toSession(login):
     session['username'] = user_data[1]
     session['email'] = user_data[2]
     session['password'] = user_data[3]
-    session['history'] = user_data[4]
+    
+    if not user_data[4]:
+        session['history'] = ''
+    else:
+        session['history'] = user_data[4]
 
 def hide_password(password):
   result = ""
