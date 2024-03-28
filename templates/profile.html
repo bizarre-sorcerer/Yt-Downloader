@@ -58,7 +58,18 @@
     <div id="myModal" class="modal">
       <div class="modal-content">
         <span class="close">&times;</span>
-        <p id="modalText"></p>
+        <!-- <p id="modalText"> -->
+          <!-- {{history}} -->
+<!-- 
+          {% for i in history.split(' ')%}
+            {{i}}
+          {% endfor %} -->
+
+          <span>https://youtu.be/2hlD7dWp09M?si=rusgToLJAaiNUjXv</span>          
+          <span>https://youtu.be/qYSWWGz9Z6s?si=Q8uQBHxQKypoNhCQ</span>          
+          <span>https://youtu.be/74q3rOlcPaI?si=VgAADn4rrBlKKXxx</span>
+          <span>https://youtu.be/D0ehC_8sQuU?si=5xKpIaQlF1EImn7F</span>  
+        <!-- </p> -->
       </div>
     </div>
 
@@ -74,7 +85,6 @@
 
     span.onclick = function() {
         modal.style.display = 'block';
-        modalText.innerText = this.innerText;
     }
 
     close.onclick = function() {

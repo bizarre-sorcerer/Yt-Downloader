@@ -210,12 +210,15 @@ h1{
   margin: 0 0 10px 0
 }
 
+.personal-data{
+  width: 90vw
+}
+
 .table{
   display: flex;
   justify-content: space-between;
-  width: 80vw;
   padding: 10px 20px 10px 20px;
-  border: solid 1px white 
+  border: solid 1px white;
 }
 
 .data-column{
@@ -247,6 +250,8 @@ h1{
 }
 
 .modal-content {
+  display: flex;
+  flex-direction: column;
   background-color: #191919;
   margin: 35% auto;
   padding: 20px;

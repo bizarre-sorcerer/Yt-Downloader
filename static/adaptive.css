@@ -16,6 +16,10 @@
     font-size: 34px;
   }
 
+  .personal-data{
+    width: 50vw;
+  }
+
   .main-container{
     display: flex;
     justify-content: center;
@@ -105,7 +109,7 @@
     opacity: .7
   }
 
-  .profile-btn-container{
+  .profile-btns-container{
     align-self: center;
   }
 }
