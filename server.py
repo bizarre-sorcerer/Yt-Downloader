@@ -26,8 +26,6 @@ def download():
 
   if "logged_in" in session:
     user_id = session["user_id"]
-    print(session['history'])
-    print(session)
     session['history'] += videoUrl
     save_to_history(db, videoUrl, user_id)
 
@@ -40,15 +38,16 @@ def download():
 
 @app.route('/profile', methods=["POST", "GET"])
 def get_profile_info(): 
-  password = hide_password(session['password']) 
+    password = hide_password(session['password']) 
+    history = session['history'].split()
 
-  return render_template(
-    'profile.html',
-    username = session['username'],
-    email = session['email'],
-    password = password,
-    history = session['history']
-  )
+    return render_template(
+        'profile.html',
+        username = session['username'],
+        email = session['email'],
+        password = password,
+        history = history
+    )
 
 @app.route('/recovery', methods=['POST', 'GET'])
 def password_recovery():
