@@ -74,7 +74,6 @@ def store_token(db, email, token):
     cursor.execute("update user_data set reset_token = %s where email = %s", (token, email))
     db.commit()
 
-
 def delete_user_data(db):
     cursor = db.cursor()
     cursor.execute("truncate table user_data")

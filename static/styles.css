@@ -316,6 +316,11 @@ h1{
   color: red
 }
 
+.recovery-r3{
+  padding: 0 20px;
+  text-align: center;
+}
+
 .sign-in-link{
   color: #0485ff;
   align-self: flex-end;
