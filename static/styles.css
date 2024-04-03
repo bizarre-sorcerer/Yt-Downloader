@@ -302,9 +302,18 @@ h1{
   height: 36px;
   padding-left: 7px;
   border: 1px solid #0485ff;
-  background-color: #191919 !important;
-  color: white !important;
+  background-color: #191919;
+  color: white;
   outline: none;
+}
+
+.error{
+  border-color: red;
+}
+
+.error-message{
+  text-align: center;
+  color: red
 }
 
 .sign-in-link{

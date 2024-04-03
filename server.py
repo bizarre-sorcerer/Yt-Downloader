@@ -92,19 +92,24 @@ def registration():
 
 @app.route('/sign-in', methods=['POST', 'GET'])
 def login():
-  if request.method == "GET":
-    return render_template("sign-in.html")
+    if request.method == "GET":
+        return render_template("sign-in.html")
   
-  elif request.method == "POST":
-    # Может быть либо именем либо почтой
-    username = request.form["login"]  
-    password = request.form['password']   
-    
-    if check_user(db, username, password)[0]:
-      add_userData_toSession(username)
-      return redirect(url_for("main_page"))
+    elif request.method == "POST":
+        # Может быть либо именем либо почтой
+        username = request.form["login"]  
+        password = request.form['password']     
+        is_valid_user = check_user(db, username, password)
+
+    if is_valid_user[0]:       
+        add_userData_toSession(username)
+        return redirect(url_for("main_page"))
     else: 
-      return render_template("sign-in.html")
+        return render_template(
+           'sign-in.html',
+            login_error = is_valid_user[1]      
+        )
+        
 
 @app.route('/log-out')
 def logout():

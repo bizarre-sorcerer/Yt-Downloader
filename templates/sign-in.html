@@ -35,10 +35,15 @@
         <button onclick="location.href='/'" class="ghost-btn">Назад</button>
       </div>
     </header>
+
     
     <div class="main-reg-container">
       <div class="reg-container">    
         <h1 class="reg-header">Аутентификация</h1>
+        
+        <h4 class="error-message">
+          {{login_error}}
+        </h4>
         
         <form action="/sign-in" method="post" class="reg-form">
           <input 
@@ -46,14 +51,14 @@
             placeholder="username/email"
             name="login"
             autocomplete="nope"
-            class="reg-input">
+            class="reg-input {{ 'error' if login_error else '' }}">
   
           <input 
             type="password"
             placeholder="password"
             name="password"
             autocomplete="nope"
-            class="reg-input">
+            class="reg-input {{ 'error' if login_error else '' }}">
             
           <a href="/sign-up" class="sign-in-link">Нет аккаунта?</a>
   

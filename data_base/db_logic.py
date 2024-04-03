@@ -11,31 +11,31 @@ def create_table(db):
     db.commit()
 
 def add_user(db, username, email, password):
-  cursor = db.cursor()
-  add_data_query = "INSERT INTO user_data (username, email, password) VALUES (%s, %s, %s)"
-  cursor.execute(add_data_query, (username, email, password))
-  db.commit()
+    cursor = db.cursor()
+    add_data_query = "INSERT INTO user_data (username, email, password) VALUES (%s, %s, %s)"
+    cursor.execute(add_data_query, (username, email, password))
+    db.commit()
 
 def check_user(db, login, password):
-  cursor = db.cursor()
-  cursor.execute("SELECT * FROM user_data WHERE username = %s OR email = %s", (login, login))
-  user_data = cursor.fetchone()
+    cursor = db.cursor()
+    cursor.execute("SELECT * FROM user_data WHERE username = %s OR email = %s", (login, login))
+    user_data = cursor.fetchone()
 
-  if user_data is None:
+    if user_data is None:
+        return [
+        False,
+        "Ошибка при входе: Пользователя с таким логином не существует"
+        ]
+    elif user_data[3] != password:
+        return [
+        False,
+        "Ошибка при входе: Неправильный пароль"
+        ]
+        
     return [
-      False,
-      "User not found"
+        True,
+        "Вход успешен"
     ]
-  elif user_data[3] != password:
-    return [
-      False,
-      "Incorrect password"
-    ]
-      
-  return [
-    True,
-    "Successfully signed in"
-  ]
 
 def save_to_history(db, url, user_id):
     cursor = db.cursor()
