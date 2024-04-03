@@ -12,7 +12,7 @@ app.secret_key = 'eaa2cc52a16507cf194e4f0c'
 
 @app.route('/')
 def main_page():
-  create_table(db)
+  create_table(db)  
   return render_template('index.html')
 
 @app.route('/download', methods=["POST"])
@@ -56,6 +56,7 @@ def password_recovery():
     elif request.method == "POST":
         email = request.form["email"] 
         token = generate_token(email)
+        store_token(db, email, token)
         send_email(email, token)
         return redirect(url_for('login'))
     

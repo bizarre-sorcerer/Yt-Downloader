@@ -5,7 +5,8 @@ def create_table(db):
         username varchar(255),
         email varchar(255),
         password varchar(255),
-        history text(255)
+        history text(255),
+        reset_token varchar(255)
     )'''
     cursor.execute(query)  
     db.commit()
@@ -67,6 +68,12 @@ def get_user_data(db, user_id):
     cursor.execute("select * from user_data where id = %s", (user_id, ))
     user_data = cursor.fetchone()
     return user_data
+
+def store_token(db, email, token):
+    cursor = db.cursor()
+    cursor.execute("update user_data set reset_token = %s where email = %s", (token, email))
+    db.commit()
+
 
 def delete_user_data(db):
     cursor = db.cursor()
