@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, session, redirect, url_for
+from itsdangerous import URLSafeTimedSerializer, SignatureExpired
 from scripts.extractor import extractVideoData
 from scripts.filter_formats import filterFormats
 from scripts.start_mysql import start_mysql
@@ -12,8 +13,7 @@ app.secret_key = 'eaa2cc52a16507cf194e4f0c'
 
 @app.route('/')
 def main_page():
-  create_table(db)  
-  return render_template('index.html')
+    return render_template('index.html')
 
 @app.route('/download', methods=["POST"])
 def download():
@@ -60,8 +60,14 @@ def password_recovery():
         send_email(email, token)
         return redirect(url_for('login'))
     
-@app.route('/change_password', methods={"POST", "GET"})
-def change_password():
+@app.route('/change_password/<token>', methods={"POST", "GET"})
+def change_password(token):
+    s = URLSafeTimedSerializer(app.config['SECRET_KEY'])
+    try:
+        email = s.loads(token, max_age=3600)  # Token is valid for 1 hour
+    except SignatureExpired:
+        return '<h1>Токен потерял валидность!</h1>'
+
     if request.method == 'GET':
         return render_template('change_password.html')
     elif request.method == "POST":
@@ -73,7 +79,7 @@ def change_password():
             user_id = get_user_id(db, column_name='email', value=email)
             change_user_password(db, user_id, new_password)
 
-            return redirect(url_for('login'))
+            return redirect(url_for('main_page'))
         return render_template('change_password.html')
 
 @app.route('/sign-up', methods=['POST', 'GET'])

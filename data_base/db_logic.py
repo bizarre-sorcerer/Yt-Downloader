@@ -77,3 +77,9 @@ def store_token(db, email, token):
 def delete_user_data(db):
     cursor = db.cursor()
     cursor.execute("truncate table user_data")
+
+def get_all_users(db):
+    cursor = db.cursor()
+    cursor.execute("select * from user_data")
+    user_data = cursor.fetchall()
+    return user_data
