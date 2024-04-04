@@ -55,23 +55,20 @@ def password_recovery():
         return render_template('password_recovery.html')
     elif request.method == "POST":
         email = request.form["email"] 
+        session['email'] = email
+        
         token = generate_token(email)
         store_token(db, email, token)
         send_email(email, token)
+        
         return redirect(url_for('login'))
     
-@app.route('/change_password/<token>', methods={"POST", "GET"})
-def change_password(token):
-    s = URLSafeTimedSerializer(app.config['SECRET_KEY'])
-    try:
-        email = s.loads(token, max_age=3600)  # Token is valid for 1 hour
-    except SignatureExpired:
-        return '<h1>Токен потерял валидность!</h1>'
-
+@app.route('/change_password', methods={"POST", "GET"})
+def change_password():
     if request.method == 'GET':
         return render_template('change_password.html')
     elif request.method == "POST":
-        email = request.form["email"]
+        email = session['email'] 
         new_password = request.form['new_password']
         confirm_password = request.form['confirm_password']
 
@@ -117,7 +114,6 @@ def login():
             login_error = is_valid_user[1]      
         )
         
-
 @app.route('/log-out')
 def logout():
     session.clear()
