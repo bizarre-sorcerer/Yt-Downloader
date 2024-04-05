@@ -56,7 +56,7 @@ def password_recovery():
     elif request.method == "POST":
         email = request.form["email"] 
         session['email'] = email
-        
+
         token = generate_token(email)
         store_token(db, email, token)
         send_email(email, token)
@@ -68,7 +68,7 @@ def change_password():
     if request.method == 'GET':
         return render_template('change_password.html')
     elif request.method == "POST":
-        email = session['email'] 
+        email = request.form['email']
         new_password = request.form['new_password']
         confirm_password = request.form['confirm_password']
 
