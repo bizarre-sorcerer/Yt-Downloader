@@ -18,7 +18,6 @@ def get_yt_dlp_json(url):
   output = os.popen(command).read()
   return output
 
-
 if __name__ == "__main__":
   if len(sys.argv) != 2:
     print("Usage: python save_yt_dlp_data.py <YouTube_URL>")

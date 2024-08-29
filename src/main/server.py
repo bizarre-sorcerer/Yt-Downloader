@@ -1,12 +1,12 @@
 from flask import Flask, render_template, request, session, redirect, url_for
-from itsdangerous import URLSafeTimedSerializer, SignatureExpired
+import mysql.connector
+import multiprocessing
+
 from scripts.extractor import extractVideoData
 from scripts.filter_formats import filterFormats
 from scripts.start_mysql import start_mysql
 from scripts.send_email import *
-from data_base.db_logic import *
-import mysql.connector
-import multiprocessing
+from db.UserDataRepository import *
 
 app = Flask(__name__)
 app.secret_key = 'eaa2cc52a16507cf194e4f0c'
@@ -152,9 +152,9 @@ if __name__ == '__main__':
 
     db = mysql.connector.connect(
         host="localhost",
-        user="root",
-        password="",
-        database="ytdownloader_data"
+        user="aidar",
+        password="root",
+        database="ytdownloader_db"
     )
     
     app.run(host='0.0.0.0', port='5000', debug=True)
