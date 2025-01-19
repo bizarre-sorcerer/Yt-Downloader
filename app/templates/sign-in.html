@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link 
+      rel="stylesheet"
+      href="{{ url_for('static',
+      filename='styles.css') }}">
+
+    <link 
+      rel="icon"
+      href="{{ url_for('static', filename='favicon.ico') }}"
+      type="image/x-icon">  
+    
+    <link 
+      rel="stylesheet"
+      href="{{ url_for('static',
+      filename='adaptive.css') }}">
+  
+  </head>
+
+  <body>
+    <header>
+      <a href="{{url_for('main_routes.main_page')}}" id="logo-link">
+        <div class="logo">
+          <span>YTMP4 </span>
+          <span>Downloader</span>
+        </div>
+      </a>
+      
+      <div class="btns-container">        
+        <button onclick="location.href='/'" class="ghost-btn">Назад</button>
+      </div>
+    </header>
+
+    
+    <div class="main-reg-container">
+      <div class="reg-container">    
+        <h1 class="reg-header">Аутентификация</h1>
+        
+        <h4 class="error-message">
+          {{login_error}}
+        </h4>
+        
+        <form action="/sign-in" method="post" class="reg-form">
+          <input 
+            type="text"
+            placeholder="username/email"
+            name="login"
+            autocomplete="nope"
+            class="reg-input {{ 'error' if login_error else '' }}">
+  
+          <input 
+            type="password"
+            placeholder="password"
+            name="password"
+            autocomplete="nope"
+            class="reg-input {{ 'error' if login_error else '' }}">
+            
+          <a href="/sign-up" class="sign-in-link">Нет аккаунта?</a>
+  
+          <a href="/recovery" class="sign-in-link">Забыли пароль?</a>
+  
+          <button type="submit" class="ghost-btn reg-btn">Войти</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

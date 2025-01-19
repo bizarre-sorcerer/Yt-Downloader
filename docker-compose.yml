@@ -3,16 +3,31 @@ version: '3.8'
 services:
   mysql:
     image: mysql:8.0
-    container_name: mysql_container
+    container_name: mysql_db
     environment:
       MYSQL_DATABASE: ytdownloader_db
-      MYSQL_USER: aidar
-      MYSQL_PASSWORD: root
+      MYSQL_USER: bizarre-sorcerer
+      MYSQL_PASSWORD: deftones
       MYSQL_ROOT_PASSWORD: root
     ports:
       - "3306:3306"
     volumes:
       - mysql_data:/var/lib/mysql
 
+  flask-app:
+    image: yt-downloader-app:1.0
+    container_name: flask_app
+    ports:
+      - "5000:5000"
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_PORT: 3306
+      MYSQL_USER: bizarre-sorcerer
+      MYSQL_PASSWORD: deftones
+      MYSQL_DATABASE: ytdownloader_db
+    depends_on:
+      - mysql
+
 volumes:
   mysql_data:
+    driver: local
